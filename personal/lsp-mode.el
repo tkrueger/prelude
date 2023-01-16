@@ -28,3 +28,18 @@
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
+;; monkey patch lsp-treemacs, see https://github.com/emacs-lsp/lsp-treemacs/issues/140
+(defun lsp-treemacs--generic-icon (item expanded?)
+  "Get the symbol for the the kind."
+  (concat
+   (if (or (plist-get item :children)
+           (plist-get item :children-async))
+       (if expanded?  "▾ " "▸ ")
+     "  ")
+   (or (plist-get item :icon-literal)
+       (if-let (icon (plist-get item :icon))
+           (treemacs-get-icon-value
+            icon
+            nil
+            lsp-treemacs-theme)
+         "   "))))
