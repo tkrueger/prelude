@@ -1,10 +1,5 @@
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-
-(setq package-selected-packages '(clojure-mode lsp-mode cider lsp-treemacs flycheck company))
-
-(when (cl-find-if-not #'package-installed-p package-selected-packages)
-  (package-refresh-contents)
-  (mapc #'package-install package-selected-packages))
+;; package already required by prelude
+(prelude-require-packages '(clojure-mode lsp-mode cider lsp-treemacs flycheck company))
 
 (add-hook 'clojure-mode-hook 'lsp)
 (add-hook 'clojurescript-mode-hook 'lsp)
