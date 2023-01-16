@@ -15,4 +15,16 @@
       lsp-ui-doc-show-with-mouse nil ; uncomment to suppress mouse hover
       ;; lsp-signature-auto-activate nil ;uncomment to suppress signature help.
       ;; prevent watching huge .cache dir (greetings, bazel...)
-      )
+      lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories (list ".*/\.cache/.*")))
+
+; (setq lsp-signature-auto-activate nil) ;; you could manually request them via `lsp-signature-activate`
+; (setq lsp-signature-render-documentation nil)
+
+; completion
+; (setq lsp-completion-provider :none)
+; (setq lsp-completion-show-detail nil)
+; (setq lsp-completion-show-kind nil)
+
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+
