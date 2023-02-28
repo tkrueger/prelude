@@ -6,6 +6,7 @@
 (add-hook 'clojurescript-mode-hook 'lsp)
 (add-hook 'clojurec-mode-hook 'lsp)
 
+;; see https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
       treemacs-space-between-root-nodes nil
@@ -15,7 +16,14 @@
       lsp-ui-doc-show-with-mouse nil ; uncomment to suppress mouse hover
       ;; lsp-signature-auto-activate nil ;uncomment to suppress signature help.
       ;; prevent watching huge .cache dir (greetings, bazel...)
-      lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories (list ".*/\.cache/.*")))
+      lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories (list ".*/\.cache/.*"))
+      ;; turn off in favor of using clj-kondo
+      lsp-diagnostics-provider :flycheck
+
+      lsp-enable-symbol-highlighting t
+      lsp-ui-sideline-enable t
+
+      )
 
 ; (setq lsp-signature-auto-activate nil) ;; you could manually request them via `lsp-signature-activate`
 ; (setq lsp-signature-render-documentation nil)
@@ -43,3 +51,9 @@
             nil
             lsp-treemacs-theme)
          "   "))))
+
+;; set up clj-kondo
+(unless (package-installed-p 'flycheck-clj-kondo)
+  (package-install 'flycheck-clj-kondo))
+
+(require 'flycheck-clj-kondo)
