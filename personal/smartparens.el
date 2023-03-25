@@ -35,6 +35,9 @@ respectively."
 
 (define-key smartparens-mode-map (kbd "C-S-<down>") 'sp-down-sexp)
 
+;; for other option of config, see config of the author:
+;; https://github.com/Fuco1/.emacs.d/blob/master/files/smartparens.el
+
 (bind-keys
  :map smartparens-mode-map
  ("C-M-a" . sp-beginning-of-sexp)
@@ -58,6 +61,7 @@ respectively."
  ("M-<right>" . sp-forward-barf-sexp)
  ("C-<left>"  . sp-backward-slurp-sexp)
  ("M-<left>"  . sp-backward-barf-sexp)
+ ("M-D" . sp-splice-sexp)
 
  ("C-M-t" . sp-transpose-sexp)
  ("C-M-k" . sp-kill-sexp)
