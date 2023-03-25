@@ -4,6 +4,8 @@
 ;;
 
 (prelude-require-package 'consult)
+(if (epl-package-installed-p 'embark)
+    (prelude-require-package 'embark-consult))
 
 ;; Create a prefix key to bind the search functions in
 (defvar consult-search-map
