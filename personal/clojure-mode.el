@@ -10,6 +10,7 @@
   (package-install 'aggressive-indent))
 (require 'aggressive-indent)
 (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+(add-hook 'before-save-hook 'eglot-format-buffer nil t)
 
 ;; enabling camelcase support for next-word and such
 (add-hook 'clojure-mode-hook #'subword-mode)
